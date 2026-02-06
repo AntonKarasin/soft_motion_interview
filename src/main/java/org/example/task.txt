@@ -1,0 +1,52 @@
+Тестовое задание:
+
+сервис или класс обрабатывающий xml:
+https://expro.ru/bitrix/catalog_export/export_Sai.xml
+(читаем по https)
+
+как библиотеку для парсинга использовать groovy.xml.XmlSlurper;
+в качестве БД postgresql,
+update БД через JDBC.
+
+предполагаем, что столбец offers.vendorCode уникальный.
+
+сделать минимальный интерфейс в консоли, интерактивный или запуск с параметром,
+или даже просто main() с использованием всех функций.
+сделать docker-compose файл
+ф-и:
+
+минимум:
+/
+* Возвращает названия таблиц из XML (currency, categories, offers)
+* @return ArrayList
+*/
+String getTableNames()
+
+/
+* Создает sql для создания таблиц динамически из XML
+* @param String tableName
+* @return String
+*/
+String getTableDDL(String tableName)
+
+/
+* обновляет данные в таблицах бд
+* на основе Id
+* если поменялась структура выдает exception
+/
+void update()
+
+/
+* обновляет данные в таблицах бд
+* если поменялась структура выдает exception
+* @param String tableName
+/
+void update(String tableName)
+
+по желанию:
+//наименование столбцов таблицы (динамически)
+ArrayList getColumnNames(String tableName)
+//true если столбец не имеет повторяющихся значений
+boolean isColumnId(String tableName, String columnName)
+//изменения таблицы, допустимо только добавление новых столбцов
+String getDDLChange(String tableName)
